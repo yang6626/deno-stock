@@ -1,6 +1,6 @@
 import { Application } from "https://deno.land/x/oak@v10.6.0/mod.ts";
 import router from "./routers/routes.ts";
-import { cron } from "https://deno.land/x/deno_cron/cron.ts";
+import { cron, every15Minute } from "https://deno.land/x/deno_cron/cron.ts";
 
 const app = new Application();
 const PORT = 4002;
@@ -13,7 +13,11 @@ app.addEventListener("listen", (_) =>
 );
 
 /** 每日15:10 工作日 */
-cron("0 10 15 * * 1-5", () => {
-  console.log("timer");
+// cron("0 10 15 * * 1-5", () => {
+//   console.log("timer");
+// });
+
+every15Minute(() => {
+  console.log(Date());
 });
 await app.listen({ port: PORT });
