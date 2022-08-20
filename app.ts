@@ -18,6 +18,8 @@ app.addEventListener("listen", (_) =>
 // });
 
 everyMinute(() => {
-  console.log(Date());
+  console.log(
+    new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" })
+  );
 });
 await app.listen({ port: PORT });
